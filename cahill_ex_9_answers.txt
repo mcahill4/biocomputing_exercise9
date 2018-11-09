@@ -1,0 +1,62 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov  7 16:26:04 2018
+
+@author: michaelcahill
+"""
+#########  Number 1 ################
+import numpy as np
+import pandas as pd
+from plotnine import *
+
+
+df1=pd.read_csv("study2.txt",sep="\t", header=0)
+
+
+a=ggplot(aes(x="Hours",y="Score"), df1)+ggtitle("Score Given Hours Studied")
+
+#I made variables here. 
+
+#This variable to make the scatter plot
+b=(a+geom_point())
+
+#This variable to make trendline
+s=(stat_smooth(method="lm"))
+
+#Here to print the graph
+print (b+s)
+
+########### Number 2 ##############
+import numpy as np
+import pandas as pd
+from plotnine import *
+
+two=pd.read_csv("data.txt")
+
+
+data = ggplot(aes(x="region",y="observations"),two) + ggtitle("Mean Observations in Each Region")+labs(y="Observations",x="Region")
+
+scat = (data + geom_jitter())
+print scat
+
+bar = (data + geom_bar(stat="summary", fun_y=np.mean))
+print bar
+
+# The two graphs are very different, and don't really convey the same information.
+# While each of the regions has almost the same mean number of observations,
+# the scatter plot shows the significant variations in the data, as the 
+# North region has very little and the East and West Regions have a lot of variation.
+# The South Region is centered around two means, and is more of a bimodial distribution.
+# So these graphs do tell different stories. In order to understand the data,
+# one would have to look at both graphs,but even the scatter plot alone could
+# be most helpful. 
+
+
+
+
+
+
+
+
+
